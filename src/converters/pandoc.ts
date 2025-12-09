@@ -152,7 +152,7 @@ export function convert(
     fileType: InputFormat,
     convertTo: OutputFormat,
     targetPath: string,
-    options?: string[] | object,
+    options?: uncnown,
     execFile: ExecFileFn = execFileOriginal,
 ): Promise<string> {
     // Build arguments array
@@ -180,10 +180,6 @@ export function convert(
     }
     args.push(filePath);
     // Extra parameters
-    if (options && typeof options != 'object') {
-        options = options.flatMap(x => x.split(' ')).filter(x => x.length);
-        args.push(...options);
-    }
 
     return new Promise((resolve, reject) => {
         execFile("pandoc", args, (error, stdout, stderr) => {
