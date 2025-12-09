@@ -37,6 +37,11 @@ RUN apt-get update && apt-get install -y \
   texlive-latex-extra \
   texlive-latex-recommended \
   texlive-xetex \
+  texlive-fonts-extra \
+  texlive-lang-english \
+  texlive-lang-cyrillic \
+  cabextract \
+  wget \
   --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
@@ -61,6 +66,23 @@ RUN ARCH=$(uname -m) && \
   mv /tmp/vtracer /usr/local/bin/vtracer && \
   chmod +x /usr/local/bin/vtracer && \
   rm /tmp/vtracer.tar.gz
+
+RUN curl -L -o /tmp/master.zip "https://github.com/mreq/xelatex-emoji/archive/refs/heads/master.zip" && \
+  unzip /tmp/master.zip -d /usr/share/texmf/tex/latex && \
+  texhash && rm /tmp/master.zip
+
+RUN curl -L -o /tmp/master.zip "https://github.com/joypixels/emojione-assets/archive/refs/heads/master.zip" && \
+  unzip /tmp/master.zip -d /tmp && mkdir /usr/share/texmf/tex/latex/xelatex-emoji-master/images && \
+  cp -r /tmp/emojione-assets-master/png/128/* /usr/share/texmf/tex/latex/xelatex-emoji-master/images/ && \
+  rm /tmp/master.zip && rm -r /tmp/emojione-assets-master
+
+RUN curl -L -o /tmp/EB_Garamond.zip "https://static.ag15.ru/fonts/EB_Garamond.zip" && \
+  unzip /tmp/EB_Garamond.zip -d /usr/share/fonts/truetype/EB_Garamond && rm /tmp/EB_Garamond.zip
+
+RUN curl -L -o /tmp/Montserrat.zip "https://static.ag15.ru/fonts/Montserrat.zip" && \
+  unzip /tmp/Montserrat.zip -d /usr/share/fonts/truetype/Montserrat && rm /tmp/Montserrat.zip
+
+RUN texhash
 
 RUN mkdir -p data
 ENV NODE_ENV=development

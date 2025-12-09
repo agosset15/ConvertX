@@ -1,0 +1,15 @@
+---
+fontsize: 20pt
+documentclass: article
+papersize: a4
+geometry: margin=2cm
+lang: ru-RU
+babel-lang: russian
+graphics: true
+mainfont: "EBGaramond-Regular.ttf "
+babelfonts:
+  russian: "EBGaramond-Regular.ttf "
+header-includes: \usepackage{xelatexemoji}
+csquotes: true
+listings: true
+---
