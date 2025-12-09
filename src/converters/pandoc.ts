@@ -152,7 +152,7 @@ export function convert(
     fileType: InputFormat,
     convertTo: OutputFormat,
     targetPath: string,
-    options?: undefined,
+    options?: unknown,
     execFile: ExecFileFn = execFileOriginal,
 ): Promise<string> {
     // Build arguments array
