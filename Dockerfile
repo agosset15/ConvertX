@@ -119,6 +119,7 @@ COPY --from=prerelease /app/dist /app/dist
 
 # COPY . .
 RUN mkdir data
+COPY md.yaml data/
 
 EXPOSE 3000/tcp
 # used for calibre
