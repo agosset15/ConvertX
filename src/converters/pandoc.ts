@@ -176,7 +176,7 @@ export function convert(
     // The metadata title is needed for ePub and standalone HTML formats
     // We use a metadata file to avoid being vulnerable to command injection
     if (fileType === "markdown") {
-        args.push("md.yaml");
+        args.push("data/md.yaml");
     }
     args.push(filePath);
     // Extra parameters
